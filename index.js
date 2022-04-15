@@ -1,9 +1,13 @@
+var http = require('http')
 const express = require('express')
 const fs = require('fs')
 const app = new express()
 app.use(express.json());
 
 const port = 3000
+
+//server creation
+const server = http.createServer(app)
 
 app.get('/',(req,res)=>{
     res.sendFile(__dirname+'/public/main/index.html')
@@ -125,14 +129,11 @@ app.post('/create',(req,res)=>{
     
 })
 
-app.listen(port, ()=>{
-    console.log(`listening on port ${port}`)
-})
-
 
 //websocket stuff
 const WebSocket = require('ws')
-const wss =  new WebSocket.Server({port:3001})
+//const wss =  new WebSocket.Server({port:3001})
+const wss =  new WebSocket.Server({server:server})
 
 const clients = new Map();
 
@@ -175,6 +176,11 @@ wss.on('connection', (ws) => {
         clients.delete(ws);
     });
 });
+
+//listen on port
+server.listen(port, ()=>{
+    console.log(`listening on port ${port}`)
+})
 
 function uuidv4() {
     return 'xxxxxxxx-xxxx-4xxx-yxxx-xxxxxxxxxxxx'.replace(/[xy]/g, function(c) {
