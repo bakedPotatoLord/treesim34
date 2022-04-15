@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="game/style.css">
+	<link rel="shortcut icon" type="image/x-icon" href="favicon.ico" />
+    <title>Document</title>
+</head>
+<body>
+	<canvas id="c"></canvas>
+	<h1 id="playersOnline"></h1>
+	<script type="importmap">
+		{
+		  "imports": {
+			"three": "/three/build/three.module.js",
+			"PointerLockControls": "./lib/PointerLockControls.js",
+			"GLTFLoader":"./lib/GLTFLoader.js"
+		  }
+		}
+	</script>
+    <script type='module' src="game/script.js"></script>
+</body>
+</html>

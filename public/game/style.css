@@ -1,0 +1,19 @@
+body{
+    margin:0px;
+    padding:0px;
+}
+
+h1{
+    position:absolute;
+    z-index: 1;
+    margin:0;
+}
+
+table{
+    background-color:rgba(0,0,0,0.5);
+}
+
+td{
+    font-size:small;
+    color:white;
+}

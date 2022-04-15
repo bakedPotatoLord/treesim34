@@ -1,0 +1,25 @@
+{
+  "name": "treesim",
+  "version": "1.0.0",
+  "description": "A web based tree simulation using three.js",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bakedPotatoLord/TreeSim.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/bakedPotatoLord/TreeSim/issues"
+  },
+  "homepage": "https://github.com/bakedPotatoLord/TreeSim#readme",
+  "dependencies": {
+    "express": "^4.17.3",
+    "three": "^0.139.2",
+    "ws": "^8.5.0"
+  }
+}
