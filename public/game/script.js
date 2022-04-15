@@ -8,6 +8,7 @@ import { OBJLoader } from '/three/examples/jsm/loaders/OBJLoader.js';
 
 let canvas = document.querySelector('canvas')
 let gui1 = document.getElementById('playersOnline')
+let percentLoaded = document.getElementById('percentLoaded')
 const keyObject = {w:false,a:false,s:false,d:false};
 
 var activePlayers = new Map()
@@ -105,6 +106,7 @@ plane.rotateX(-Math.PI/2)
 
 
 let loader = new GLTFLoader();
+loader.loadedTree = false
 
 loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 
@@ -119,15 +121,20 @@ loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 	tree.position.set(0,0,0)
     
 	//tree.rotateX(-Math.PI/2)
-	tree.scale.set( 0.1, 0.1, 0.1 );
+	tree.scale.set( 0.2, 0.2, 0.2 );
 	tree.material = new THREE.MeshPhongMaterial();
     tree.castShadow = true; //default is false
 	tree.receiveShadow = false; //default
 	scene.add( tree);
 
+    loader.loadedTree = true
+    controls.lock()
+    percentLoaded.innerHTML = '';
+
 }, function ( xhr ) {
 
-    console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+    //console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
+    loader.progress = ( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
 
 },(err)=>{
     console.log(err)
@@ -247,6 +254,7 @@ function move(){
 function animate() {
     requestAnimationFrame( animate );
     
+    if(loader.loadedTree){
     //update sun
     updateSun()
     //draw other players
@@ -255,6 +263,10 @@ function animate() {
     move()
     //render scene locally
     renderer.render( scene, camera );
+    }else{
+        //console.log(loader.progress)
+        percentLoaded.innerHTML = loader.progress;
+    }
 
     var tempTable = '<table>'
     for(let i of activePlayers){

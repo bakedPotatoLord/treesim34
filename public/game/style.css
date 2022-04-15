@@ -3,10 +3,22 @@ body{
     padding:0px;
 }
 
-h1{
+canvas{
+    text-align:center;
+}
+
+#playersOnline{
     position:absolute;
     z-index: 1;
     margin:0;
+}
+
+#percentLoaded{
+    position:absolute;
+    z-index: 1;
+    margin:0;
+    left:50%;
+    top:50%;
 }
 
 table{
