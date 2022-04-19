@@ -27,11 +27,15 @@ camera.position.zv = 0
 const controls = new PointerLockControls(camera, canvas);
 controls.connect()
 
-const renderer = new THREE.WebGLRenderer({ canvas: canvas });
+const renderer = new THREE.WebGLRenderer({
+     canvas: canvas,
+     antialias: true,
+    });
 renderer.setSize( window.innerWidth, window.innerHeight );
 //renderer.physicallyCorrectLights = true
 renderer.shadowMap.enabled = true;
 renderer.shadowMap.type = THREE.PCFSoftShadowMap; // default 
+renderer.outputEncoding = THREE.sRGBEncoding;
 document.body.appendChild( renderer.domElement );
 
 //add light
@@ -122,9 +126,10 @@ loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
     
 	//tree.rotateX(-Math.PI/2)
 	tree.scale.set( 0.2, 0.2, 0.2 );
-	tree.material = new THREE.MeshPhongMaterial();
+	tree.material = new THREE.MeshStandardMaterial();
     tree.castShadow = true; //default is false
 	tree.receiveShadow = false; //default
+    tree.transparent = true;
 	scene.add( tree);
 
     loader.loadedTree = true
@@ -238,7 +243,13 @@ function move(){
     }
 
     async function connectToServer() {
-        const ws = new WebSocket('ws://localhost:3000');
+        const pageUrl = new URL(window.location)
+        console.log(pageUrl.port)
+        if(pageUrl.port){
+            let ws = new WebSocket(`ws://${pageUrl.hostname}:${pageUrl.port}`);
+        }else{
+            const ws = new WebSocket(`ws://${pageUrl.hostname}`);
+        }
         return new Promise((resolve, reject) => {
             const timer = setInterval(() => {
                 if(ws.readyState === 1) {
