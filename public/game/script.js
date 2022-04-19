@@ -66,7 +66,7 @@ light.shadow.camera.bottom = -30;
 
 //Create a helper for the shadow camera (optional)
 const helper = new THREE.CameraHelper( light.shadow.camera );
-scene.add( helper );
+//scene.add( helper );
 
 
 //add fog
@@ -110,8 +110,8 @@ plane.rotateX(-Math.PI/2)
 
 
 let loader = new GLTFLoader();
-loader.loadedTree = false
-
+loader.loadedTree = true
+/*
 loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 
 	const tree = gltf.scene.children[0]
@@ -144,6 +144,7 @@ loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 },(err)=>{
     console.log(err)
 } );
+*/
 
 function updateSun(){
     let dist = 30
@@ -245,11 +246,14 @@ function move(){
     async function connectToServer() {
         const pageUrl = new URL(window.location)
         console.log(pageUrl.port)
+			
         if(pageUrl.port){
-            let ws = new WebSocket(`ws://${pageUrl.hostname}:${pageUrl.port}`);
+            var WSURL = `ws://${pageUrl.hostname}:${pageUrl.port}`
         }else{
-            const ws = new WebSocket(`ws://${pageUrl.hostname}`);
+            var WSURL = `ws://${pageUrl.hostname}`
         }
+				const ws = new WebSocket(WSURL)
+			
         return new Promise((resolve, reject) => {
             const timer = setInterval(() => {
                 if(ws.readyState === 1) {
