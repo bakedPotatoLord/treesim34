@@ -7,11 +7,9 @@ A web based tree simulation using three.js
 ```
 
 then run 
-```powershell
+```shell
     npm i
     node .
 ```
 
 and connect to https://localhost:3000
-
-the websocket is hosted on https://localhost:3001
