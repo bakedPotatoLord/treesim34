@@ -248,7 +248,7 @@ function move(){
         console.log(pageUrl.port)
 			
         if(pageUrl.port){
-            var WSURL = `ws://${pageUrl.hostname}:${pageUrl.port}`
+            var WSURL = `wss://${pageUrl.hostname}:${pageUrl.port}`
         }else{
             var WSURL = `wss://${pageUrl.hostname}`
         }
