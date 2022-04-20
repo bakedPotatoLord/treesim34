@@ -1,4 +1,4 @@
-import * as THREE from 'three'
+import * as THREE from '/three/build/three.module.js'
 import {PointerLockControls} from '/three/examples/jsm/controls/PointerLockControls.js';
 import { GLTFLoader } from '/three/examples/jsm/loaders/GLTFLoader.js';
 
@@ -110,8 +110,8 @@ plane.rotateX(-Math.PI/2)
 
 
 let loader = new GLTFLoader();
-loader.loadedTree = true
-/*
+loader.loadedTree = false;
+
 loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 
 	const tree = gltf.scene.children[0]
@@ -144,7 +144,7 @@ loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
 },(err)=>{
     console.log(err)
 } );
-*/
+
 
 function updateSun(){
     let dist = 30
@@ -294,6 +294,12 @@ function animate() {
     }
     gui1.innerHTML = tempTable+'</table>'
 };
+
+function onWindowResize() {
+camera.aspect = window.innerWidth / window.innerHeight;
+camera.updateProjectionMatrix();
+renderer.setSize( window.innerWidth, window.innerHeight );
+}
 
 canvas.onclick =  function(e){
 
