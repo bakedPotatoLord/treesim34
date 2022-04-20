@@ -250,7 +250,7 @@ function move(){
         if(pageUrl.port){
             var WSURL = `ws://${pageUrl.hostname}:${pageUrl.port}`
         }else{
-            var WSURL = `ws://${pageUrl.hostname}`
+            var WSURL = `wss://${pageUrl.hostname}`
         }
 				const ws = new WebSocket(WSURL)
 			
