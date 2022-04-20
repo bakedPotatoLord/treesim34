@@ -250,7 +250,7 @@ function move(){
         if(pageUrl.port){
             var WSURL = `wss://${pageUrl.hostname}:${pageUrl.port}`
         }else{
-            var WSURL = `wss://${pageUrl.hostname}`
+            var WSURL = `wss://${pageUrl.hostname}` 
         }
 				const ws = new WebSocket(WSURL)
 			
@@ -312,16 +312,16 @@ canvas.onclick =  function(e){
 }
 //document.addEventListener('keydown', logKey);
 document.onkeydown = function(e){
-  if(e.key == 'w'){
+  if(e.key == 'w' || e.key == 'W'){
     keyObject.w = true;
   }
-	if(e.key == 'a'){
+	if(e.key == 'a' || e.key == 'A'){
     keyObject.a = true;
 	}
-  if(e.key == 's'){
+  if(e.key == 's' || e.key == 'S'){
     keyObject.s = true;
 	}
-  if(e.key == 'd'){
+  if(e.key == 'd' || e.key == 'D'){
 		keyObject.d = true;
 	}
 	if(e.key == ' '){
