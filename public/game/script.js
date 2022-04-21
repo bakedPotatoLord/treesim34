@@ -14,7 +14,7 @@ const keyObject = {w:false,a:false,s:false,d:false};
 var activePlayers = new Map()
 var playerObjects = new Map()
 
-let time = 0
+let time = 0 
 
 const scene = new THREE.Scene();
 const camera = new THREE.PerspectiveCamera( 75, window.innerWidth / window.innerHeight, 0.1, 1000 );
@@ -248,7 +248,7 @@ function move(){
         console.log(pageUrl.port)
 			
         if(pageUrl.port){
-            var WSURL = `wss://${pageUrl.hostname}:${pageUrl.port}`
+            var WSURL = `ws://${pageUrl.hostname}:${pageUrl.port}`
         }else{
             var WSURL = `wss://${pageUrl.hostname}` 
         }
