@@ -136,6 +136,9 @@ loader.load( './models/tree/Sequoia.gltf', function ( gltf ) {
     controls.lock()
     percentLoaded.innerHTML = '';
 
+		//initiate websocket connection
+		startWS()
+
 }, function ( xhr ) {
 
     //console.log( ( xhr.loaded / xhr.total * 100 ) + '% loaded' );
@@ -221,7 +224,7 @@ function move(){
     controls.moveRight(camera.position.zv)
 }
 
-(async function() {
+async function startWS() {
 
     const ws = await connectToServer();
     
@@ -264,12 +267,15 @@ function move(){
         });
     }
     setInterval(sendMSG,22)
-})();
+};
 
 function animate() {
     requestAnimationFrame( animate );
     
     if(loader.loadedTree){
+
+		
+		
     //update sun
     updateSun()
     //draw other players
